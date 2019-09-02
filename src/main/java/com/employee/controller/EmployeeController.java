@@ -3,6 +3,7 @@ package com.employee.controller;
 import com.employee.exception.ResourceNotFoundException;
 import com.employee.model.Employee;
 import com.employee.repository.EmployeeRepository;
+import com.employee.service.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,9 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     EmployeeRepository employeeRepository;
+
+    @Autowired
+    private ProducerService producerService;
 
     @GetMapping("/employee")
     public List<Employee> getAllEmployees()
@@ -43,7 +47,7 @@ public class EmployeeController {
         employee1.setMobile(employee.getMobile());
         employee1.setNic(employee.getNic());
         employee1.setPassword(employee.getPassword());
-
+        employee1.setCompanyId(employee.getCompanyId());
         Employee updatedEmployee = employeeRepository.save(employee1);
         return updatedEmployee;
     }
@@ -54,5 +58,10 @@ public class EmployeeController {
         Employee employee = employeeRepository.findById(id) .orElseThrow(() -> new ResourceNotFoundException("Employee","id",id));
         employeeRepository.delete(employee);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/produce")
+    public Object sendMsg(@RequestBody Employee employee) throws Exception {
+        return producerService.sendMsg(employee.getCompanyId());
     }
 }

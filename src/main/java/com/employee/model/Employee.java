@@ -31,6 +31,9 @@ public class Employee {
     @Column(name = "Password")
     String password;
 
+    @Column(name = "CompanyId")
+    Long companyId;
+
     public Employee() {
     }
 
@@ -88,6 +91,14 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 
     @Override
