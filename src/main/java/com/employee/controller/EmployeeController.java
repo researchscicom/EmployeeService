@@ -1,6 +1,7 @@
 package com.employee.controller;
 
 import com.employee.exception.ResourceNotFoundException;
+import com.employee.model.Company;
 import com.employee.model.Employee;
 import com.employee.repository.EmployeeRepository;
 import com.employee.service.ProducerService;
@@ -64,4 +65,5 @@ public class EmployeeController {
     public Object sendMsg(@RequestBody Employee employee) throws Exception {
         return producerService.sendMsg(employee.getCompanyId());
     }
+
 }
