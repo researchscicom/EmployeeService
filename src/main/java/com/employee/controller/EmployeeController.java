@@ -1,7 +1,6 @@
 package com.employee.controller;
 
 import com.employee.exception.ResourceNotFoundException;
-import com.employee.model.Company;
 import com.employee.model.Employee;
 import com.employee.repository.EmployeeRepository;
 import com.employee.service.ProducerService;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class EmployeeController {
     @Autowired
